@@ -1,21 +1,12 @@
 import { Router } from "express";
+import { mostrarIndex, mostrarFormCrear, mostrarClientes, mostrarFormActualizar } from "../controllers/vistas.controllers.js";
 
 const router = Router();
 
-router.get('/', (req, res)=>{
-    try {
-      res.render('index') 
-    } catch (err) {
-      console.log(err)
-    }
-  })
+router.get('/', mostrarIndex)
+router.get('/crear', mostrarFormCrear)
+router.get('/verClientes', mostrarClientes )
+router.get('/actualizar', mostrarFormActualizar)
 
-router.get('/crear', (req, res)=>{
-  try {
-    res.render('formularioCrear')
-  } catch (err) {
-    
-  }
-})
 
 export default router;

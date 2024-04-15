@@ -1,0 +1,20 @@
+<h1 class="py-5">CRUD Clientes</h1>
+<div class="bg-secondary-subtle col-6 text-black container rounded-4">
+    <h2 class="py-5">Crear Clientes</h2>
+
+    <div class="container col-6 text-start">
+        <form action="/api/v1/clientes" method="POST" class="mb-3">
+            <label for="inputNombre" class="form-label">Nombre:</label>
+            <input class="form-control" type="text" id="inputNombre" name="nombre" required>
+            <label for="inputRut" class="form-label">Rut:</label>
+            <input type="text" name="rut" id="inputRut" class="form-control" required>
+            <label for="inputEmail" class="form-label">Email:</label>
+            <input class="form-control" type="email" name="email" id="inputEmail" required>
+            <label for="inputTel" class="form-label">Telefono:</label>
+            <input class="form-control" type="text" id="inputTel" name="telefono" value="+569" required>
+            <label for="inputServ" class="form-label">Servicio:</label>
+            <input type="text" name="servicio" id="inputServ" class="form-control" required>
+            <button type="submit" class="btn btn-dark mx-auto my-3 mb-3">Crear</button>
+        </form>
+    </div>
+</div>

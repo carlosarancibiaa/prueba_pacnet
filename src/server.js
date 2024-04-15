@@ -23,6 +23,8 @@ app.set("view engine", ".hbs");
 
 // middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use("/public", express.static(path.resolve(__dirname, "../public")));
 

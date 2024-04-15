@@ -3,6 +3,7 @@ import Cliente from "../models/clientes.models.js";
 const crearCliente = async (req, res) => {
     try {
         let { nombre, rut, email, telefono, servicio } = req.body;
+        console.log(req.body)
         let nuevoCliente = await Cliente.create({
             nombre,
             rut,
@@ -26,7 +27,7 @@ const crearCliente = async (req, res) => {
 const obtenerClientes = async (req, res) => {
     try {
         let clientes = await Cliente.findAll({
-            attributes: ['nombre', 'email', 'telefono']
+            attributes: ['id', 'nombre', 'email', 'telefono']
         });
         res.status(201).json({
             code: 201,
