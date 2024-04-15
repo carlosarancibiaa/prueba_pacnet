@@ -16,7 +16,35 @@
             <input class="form-control" type="text" id="inputTel" name="telefono" value="+569" required>
             <label for="inputServ" class="form-label">Servicio:</label>
             <input type="text" name="servicio" id="inputServ" class="form-control" required>
-            <button type="submit" class="btn btn-dark mx-auto my-3 mb-3">Crear</button>
+            <button id="btnAct" type="submit" class="btn btn-dark mx-auto my-3 mb-3">Actualizar</button>
         </form>
     </div>
 </div>
+
+<script>
+    formActualizar.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    let id = inputID.value;
+    let nombre = inputNombre.value;
+    let rut = inputRut.value;
+    let email = inputEmail.value;
+    let telefono = inputTel.value;
+    let servicio = inputServ.value;
+    console.log('HOLAAAAAAAAAAAAAAAAAAAAAAAAA',nombre)
+    fetch('/api/v1/clientes', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id, nombre, rut, email, telefono, servicio})
+    })
+    .then(response => {
+        if(response.ok){
+            window.location.href = '/clienteActualizado';
+        }else{
+            console.error('Error al actualizar al cliente')
+        }
+    })
+    .catch(err => console.error(err))
+})
+</script>

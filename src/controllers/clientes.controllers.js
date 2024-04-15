@@ -48,7 +48,7 @@ const actualizarCliente = async (req, res) => {
         let { id, nombre, rut, email, telefono, servicio } = req.body;
         let clienteActualizado
         let clienteEncontrado = await Cliente.findOne({
-            where: id,
+            where: {id: id},
             attributes: ['nombre', 'rut', 'id']
         })
         if (clienteEncontrado) {
