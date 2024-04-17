@@ -2,6 +2,8 @@ import express from 'express';
 import clientesRoutes from './routes/clientes.routes.js'
 import vistasRoutes from './routes/vistas.routes.js'
 import exphbs from 'express-handlebars';
+import cors from 'cors'
+import methodOverride from 'method-override'
 import path from 'path';
 import { fileURLToPath } from "url"; // __dirname no está disponible en el ámbito de los módulos ES, por lo que es necesario utilizar este módulo para trabajar con __dirname
 
@@ -22,8 +24,10 @@ app.set("view engine", ".hbs");
 
 
 // middlewares
+app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors())
 
 
 app.use("/public", express.static(path.resolve(__dirname, "../public")));

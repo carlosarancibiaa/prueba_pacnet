@@ -1,50 +1,23 @@
 <h1 class="py-5">CRUD Clientes</h1>
 <div class="bg-secondary-subtle col-6 text-black container rounded-4">
     <h2 class="py-5">Actualizar Cliente</h2>
-
     <div class="container col-6 text-start">
-        <form id="formActualizar" action="" method="" class="mb-3">
+        <form id="formActualizar" action="/api/v1/clientes?_method=PUT" method="POST" class="mb-3">
             <label for="inputID" class="form-label">ID:</label>
-            <input class="form-control" type="number" id="inputID" name="id" required>
+            <input class="form-control" type="number" id="inputID" name="id" required value="{{datos.id}}">
             <label for="inputNombre" class="form-label">Nombre:</label>
-            <input class="form-control" type="text" id="inputNombre" name="nombre" required>
+            <input class="form-control" type="text" id="inputNombre" name="nombre" required value="{{datos.nombre}}">
             <label for="inputRut" class="form-label">Rut:</label>
-            <input type="text" name="rut" id="inputRut" class="form-control" required>
+            <input type="text" name="rut" id="inputRut" class="form-control" required value="{{datos.rut}}">
             <label for="inputEmail" class="form-label">Email:</label>
-            <input class="form-control" type="email" name="email" id="inputEmail" required>
+            <input class="form-control" type="email" name="email" id="inputEmail" required value="{{datos.email}}">
             <label for="inputTel" class="form-label">Telefono:</label>
-            <input class="form-control" type="text" id="inputTel" name="telefono" value="+569" required>
+            <input class="form-control" type="text" id="inputTel" name="telefono" value="+569" required
+                value="{{datos.telefono}}">
             <label for="inputServ" class="form-label">Servicio:</label>
-            <input type="text" name="servicio" id="inputServ" class="form-control" required>
+            <input type="text" name="servicio" id="inputServ" class="form-control" required value="{{datos.servicio}}">
+            <input type="hidden" id="inputTipoApi" name="tipoApi" value="propia">
             <button id="btnAct" type="submit" class="btn btn-dark mx-auto my-3 mb-3">Actualizar</button>
         </form>
     </div>
 </div>
-
-<script>
-    formActualizar.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    let id = inputID.value;
-    let nombre = inputNombre.value;
-    let rut = inputRut.value;
-    let email = inputEmail.value;
-    let telefono = inputTel.value;
-    let servicio = inputServ.value;
-    console.log('HOLAAAAAAAAAAAAAAAAAAAAAAAAA',nombre)
-    fetch('/api/v1/clientes', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id, nombre, rut, email, telefono, servicio})
-    })
-    .then(response => {
-        if(response.ok){
-            window.location.href = '/clienteActualizado';
-        }else{
-            console.error('Error al actualizar al cliente')
-        }
-    })
-    .catch(err => console.error(err))
-})
-</script>

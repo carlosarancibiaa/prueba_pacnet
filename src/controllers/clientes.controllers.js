@@ -2,8 +2,7 @@ import Cliente from "../models/clientes.models.js";
 
 const crearCliente = async (req, res) => {
     try {
-        let { nombre, rut, email, telefono, servicio } = req.body;
-        console.log(req.body)
+        let { nombre, rut, email, telefono, servicio, tipoApi } = req.body;
         let nuevoCliente = await Cliente.create({
             nombre,
             rut,
@@ -11,10 +10,15 @@ const crearCliente = async (req, res) => {
             telefono,
             servicio
         });
-        res.status(201).json({
-            code: 201,
-            mensaje: `Se ha creado un nuevo cliente con nombre ${nombre} y id: ${nuevoCliente.id}`
-        });
+
+        if (tipoApi){
+            res.redirect('/')
+        }else{
+            res.status(201).json({
+                code: 201,
+                mensaje: `Se ha creado un nuevo cliente con nombre ${nombre} y id: ${nuevoCliente.id}`
+            });
+        }
     } catch (err) {
         console.log('Ocurrió un error al crear el cliente: ', err)
         res.status(500).json({
@@ -27,7 +31,7 @@ const crearCliente = async (req, res) => {
 const obtenerClientes = async (req, res) => {
     try {
         let clientes = await Cliente.findAll({
-            attributes: ['id', 'nombre', 'email', 'telefono']
+            attributes: ['id', 'nombre', 'rut', 'email', 'telefono','servicio']
         });
         res.status(201).json({
             code: 201,
@@ -45,7 +49,7 @@ const obtenerClientes = async (req, res) => {
 
 const actualizarCliente = async (req, res) => {
     try {
-        let { id, nombre, rut, email, telefono, servicio } = req.body;
+        let { id, nombre, rut, email, telefono, servicio, tipoApi } = req.body;
         let clienteActualizado
         let clienteEncontrado = await Cliente.findOne({
             where: {id: id},
@@ -68,9 +72,14 @@ const actualizarCliente = async (req, res) => {
                 mensaje: 'Cliente no existe en la base de datos'
             })
         }
-        res.status(201).json({
-            mensaje: `Cliente ${nombre} actualizado`
-        })
+
+        if (tipoApi){
+            res.redirect('/')
+        }else{
+            res.status(201).json({
+                mensaje: `Cliente ${nombre} actualizado`
+            })
+        }
 
     } catch (err) {
         console.log('Ha ocurido un error al intentar actualizar los datos del cliente', err)
@@ -83,15 +92,19 @@ const actualizarCliente = async (req, res) => {
 
 const eliminarCliente = async (req, res) => {
     try {
-        let { id } = req.body;
+        let { id, tipoApi } = req.body;
         let clienteEliminado = await Cliente.destroy({
             where: {
                 id: id
             }
         })
-        res.status(200).json({
-            mensaje: `Cliente con id: ${id} eliminado exitosamente`
-        })
+        if (tipoApi){
+            res.redirect('/')
+        }else{
+            res.status(200).json({
+                mensaje: `Cliente con id: ${id} eliminado exitosamente`
+            })
+        }
 
     } catch (err) {
         console.log('Error al eliminar al cliente',err)
