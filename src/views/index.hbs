@@ -29,13 +29,13 @@
                         <td>{{telefono}}</td>
                         <td>{{servicio}}</td>
                         <td id="{{id}}">
-                            <form action="/api/v1/clientes?_method=DELETE" method="POST">
+                            <form class="d-inline-block" action="/api/v1/clientes?_method=DELETE" method="POST">
                                 <input hidden type="text" name="id" value="{{id}}">
                                 <input type="hidden" name="tipoApi" value="propia">
-                                <button class="btn mx-1 btn-danger"><i class="bi bi-trash"></i></button>
+                                <button class="btn m-1 btn-danger"><i class="bi bi-trash"></i></button>
                             </form>
                             <a href="/actualizar">
-                                <button class="btn mx-1 btn-success"><i class="bi bi-pencil-square"></i></button>
+                                <button class="btn m-1 btn-success"><i class="bi bi-pencil-square"></i></button>
                             </a>
                         </td>
                     </tr>
