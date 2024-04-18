@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', mostrarIndex)
 router.get('/crear', mostrarFormCrear)
-router.get('/actualizar', mostrarFormActualizar)
+router.post('/actualizar', mostrarFormActualizar)
 
 
 

@@ -34,9 +34,10 @@
                                 <input type="hidden" name="tipoApi" value="propia">
                                 <button class="btn m-1 btn-danger"><i class="bi bi-trash"></i></button>
                             </form>
-                            <a href="/actualizar">
+                            <form action="/actualizar" method="post" class="d-inline-block">
+                                <input hidden type="text" name="datos" value="{{json this}}">
                                 <button class="btn m-1 btn-success"><i class="bi bi-pencil-square"></i></button>
-                            </a>
+                            </form>
                         </td>
                     </tr>
                     {{/each}}
