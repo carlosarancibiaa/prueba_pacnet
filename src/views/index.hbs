@@ -21,23 +21,20 @@
                 </thead>
                 <tbody>
                     {{#each datos}}
-                    <tr>
+                    <tr id="tr{{id}}">
                         <td>{{id}}</td>
                         <td>{{nombre}}</td>
                         <td>{{rut}}</td>
                         <td>{{email}}</td>
                         <td>{{telefono}}</td>
                         <td>{{servicio}}</td>
-                        <td id="{{id}}">
+                        <td id="td{{id}}">
                             <form class="d-inline-block" action="/api/v1/clientes?_method=DELETE" method="POST">
                                 <input hidden type="text" name="id" value="{{id}}">
                                 <input type="hidden" name="tipoApi" value="propia">
-                                <button class="btn m-1 btn-danger"><i class="bi bi-trash"></i></button>
+                                <button title="Eliminar" class="btn m-1 btn-danger"><i class="bi bi-trash"></i></button>
                             </form>
-                            <form action="/actualizar" method="post" class="d-inline-block">
-                                <input hidden type="text" name="datos" value="{{json this}}">
-                                <button class="btn m-1 btn-success"><i class="bi bi-pencil-square"></i></button>
-                            </form>
+                            <button id="" title="Editar" class="btn editBtn m-1 btn-success"><i class="bi bi-pencil-square"></i></button>
                         </td>
                     </tr>
                     {{/each}}

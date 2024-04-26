@@ -74,6 +74,7 @@ const actualizarCliente = async (req, res) => {
         }
 
         if (tipoApi){
+            console.log(typeof clienteActualizado[0])
             res.redirect('/')
         }else{
             res.status(201).json({
